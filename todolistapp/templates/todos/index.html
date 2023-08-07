@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+{% block content %}
+<div class="card-body">
+    <h4>To Do List</h4>
+    <table class="table">
+        <tbody>
+            {% for todos in latest_todo_list %}
+            <tr>
+                <td>{{ todos.description }}</td>
+                <td>
+                    <a type="button" class="btn btn-danger" href="{% url 'delete' todos.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+
+    <input type="submit" name="New Task" value="New Task">
+</form>
+
+</body>
+</html>
